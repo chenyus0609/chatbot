@@ -8,7 +8,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,
+    MessageEvent, TextMessage, TextSendMessage, ImageMessage, ImageSendMessage
 )
 
 app = Flask(__name__)
@@ -39,6 +39,16 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    # 使用者輸入的文字
+    msg = event.message.text
+    # 回應使用者輸入的話by圖片
+    if "林丹" in msg or "Lin Dan" in msg:
+        #回應圖片
+        message=ImageSendMessage(
+            orignal_content_url="https://statics.sportskeeda.com/wp-content/uploads/2015/12/lin-dan-1448998641-800.jpg",
+            preview_image_url="https://statics.sportskeeda.com/wp-content/uploads/2015/12/lin-dan-1448998641-800.jpg"
+            )
+        line_bot_api.reply_message(event.reply_token, message)
     # 回應使用者輸入的話
     line_bot_api.reply_message(
         event.reply_token,
