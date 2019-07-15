@@ -46,8 +46,7 @@ def handle_message(event):
         #回應圖片
         message=ImageSendMessage(
             orignal_content_url="https://statics.sportskeeda.com/wp-content/uploads/2015/12/lin-dan-1448998641-800.jpg",
-            preview_image_url="https://statics.sportskeeda.com/wp-content/uploads/2015/12/lin-dan-1448998641-800.jpg"
-            )
+            preview_image_url="https://statics.sportskeeda.com/wp-content/uploads/2015/12/lin-dan-1448998641-800.jpg")
         line_bot_api.reply_message(event.reply_token, message)
     # 回應使用者輸入的話
     else:
